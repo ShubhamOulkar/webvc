@@ -6,8 +6,8 @@
 3. Screensharing.
 
 ### Technology:
-
-• Python (Django)
-• Database (MySQl)
-• HTML
-• JavaScript, CSS, Bootstrap
+1. WebRTC
+2. Python (Django)
+3. Database (MySQl)
+4. HTML
+5. JavaScript, CSS, Bootstrap

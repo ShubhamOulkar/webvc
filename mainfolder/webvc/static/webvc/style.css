@@ -6,3 +6,8 @@ h1{
     text-align: center;
     padding-top: 3%;
 }
+.ratio-1x1 {
+    @include media-breakpoint-up(md) {
+      --bs-aspect-ratio: 50%; // 2x1
+    }
+  }

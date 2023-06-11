@@ -2,5 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return render(request,'webvc/home.html')
+def room(request):
+
+    return render(request,'webvc/room.html')
+
+
+def lobby(request):
+    return render(request,'webvc/lobby.html')

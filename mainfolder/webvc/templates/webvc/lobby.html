@@ -1,0 +1,35 @@
+{% extends 'webvc/home.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+    <section id="form-container">
+        <img id="logo" src="{% static 'webvc/images/chat-icon.png' %}" alt="logo">
+
+        <div>
+            <h1>Welcome to Web Video Conferencing Django app</h1>
+            <p>Group video calling application for you</p>
+        </div>
+
+        <form id="form">
+            <div class="form-field">
+                <input type="submit" value="join strem">
+            </div>
+        </form>
+    </section>
+
+    
+</main>
+<script type="text/javascript">
+    let form = document.getElementById('form')
+
+    let handleSubmit = async (e) => {
+        e.preventDefault()
+        window.open('/room/', '_self')
+    }
+
+    form.addEventListener('submit', handleSubmit)
+</script>
+
+
+{% endblock content %}

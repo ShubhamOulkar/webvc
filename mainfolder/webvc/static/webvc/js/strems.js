@@ -1,8 +1,8 @@
 const APP_ID = '4c883b025263435eae98296fcaabc6cf'
-const CHANNEL = 'webvc'
-const TOKEN = '007eJxTYFhc+/bSnjTt/xUtvXusghU+f/x8XL/SlGv68jL5V/uiJP4pMJgkW1gYJxkYmRqZGZsYm6YmplpaGFmapSUnJiYlmyWnuS5pTWkIZGTwcPVlZmSAQBCflaE8NaksmYEBAAYTITc='
-let UID;
-
+const CHANNEL = sessionStorage.getItem('room')
+const TOKEN = sessionStorage.getItem('token')
+let UID= Number(sessionStorage.getItem('UID'))
+let NAME = sessionStorage.getItem('name')
 // Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
@@ -10,15 +10,26 @@ let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
+    document.getElementById('room-name').innerText = CHANNEL;
+
     client.on('user-published', handleUserJoined)
     client.on('user-left', handleUserLeft)
 
-   UID =  await client.join(APP_ID, CHANNEL, TOKEN, null)
+    try {
+        await client.join(APP_ID, CHANNEL, TOKEN, UID)
+    }catch(error){
+        console.error(error)
+        window.open('/','_self')
+    }
+
+
 
    localTracks = await  AgoraRTC.createMicrophoneAndCameraTracks()
    
+    let member = await createmember()
+
    let player = `<div class="video-container" id="user-container-${UID}">
-                <div class="username-wrapper"><span class="user-name">My name</span></div>
+                <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
                 <div class="video-player" id="user-${UID}"></div>
                 </div>`
 
@@ -39,9 +50,10 @@ let handleUserJoined = async (user, mediaType) => {
             player.remove()
         }
 
+        let member = await getmember(user)
 
         player = `<div  class="video-container" id="user-container-${user.uid}">
-            <div class="username-wrapper"><span class="user-name">My name</span></div>
+            <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
             <div class="video-player" id="user-${user.uid}"></div>
             </div>`
 
@@ -89,6 +101,28 @@ let micToggle = async (e) => {
         await localTracks[0].setMuted(true)
         e.target.style.backgroundColor = 'rgb(255,80,80,1)'
     }
+}
+
+let createmember = async () => {
+    let response = await fetch('/create_member/', {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            'name': NAME,
+            'room_name': CHANNEL,
+            'UID':UID
+        })
+    })
+    let memebr = await response.json()
+    return memebr
+}
+
+let getmember = async (user) => {
+    let response = await fetch(`/get_member/?UID=${user.uid}&room_name=${CHANNEL}`)
+    let member = await response.json()
+    return member
 }
 
 joinAndDisplayLocalStream()

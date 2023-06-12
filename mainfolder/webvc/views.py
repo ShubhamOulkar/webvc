@@ -30,7 +30,7 @@ def room(request):
 def lobby(request):
     return render(request,'webvc/lobby.html')
 
-@csrf_exempt
+
 def createuser(request):
     data = json.loads(request.body)
     member, created = RoomMember.objects.get_or_create(

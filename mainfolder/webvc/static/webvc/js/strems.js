@@ -3,11 +3,15 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID= Number(sessionStorage.getItem('UID'))
 let NAME = sessionStorage.getItem('name')
+const CSRF_TOKEN = getCookie('csrftoken');
+
 // Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
-let remoteUsers = {}
+let remoteUsers = {}S
+
+console.log(document.cookie)
 
 let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL;
@@ -103,12 +107,33 @@ let micToggle = async (e) => {
     }
 }
 
+
+// Get csrf token 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 let createmember = async () => {
     let response = await fetch('/create_member/', {
         method: 'POST',
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'X-CSRFToken': CSRF_TOKEN
         },
+        mode: 'same-origin' ,
         body:JSON.stringify({
             'name': NAME,
             'room_name': CHANNEL,

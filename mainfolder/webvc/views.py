@@ -6,7 +6,12 @@ import time
 import json
 from .models import RoomMember
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+
+
+
+def start(request):
+    return render(request, 'webvc/getin.html')
+
 
 #Build token with uid
 def getToken(request):

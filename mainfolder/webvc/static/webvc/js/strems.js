@@ -3,7 +3,7 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID= Number(sessionStorage.getItem('UID'))
 let NAME = sessionStorage.getItem('name')
-const CSRF_TOKEN = getCookie('csrftoken');
+const CSRF_TOKEN = getCookie('csrftoken')
 
 // Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})

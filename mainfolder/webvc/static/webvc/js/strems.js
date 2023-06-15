@@ -3,7 +3,7 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID= Number(sessionStorage.getItem('UID'))
 let NAME = sessionStorage.getItem('name')
-const CSRF_TOKEN = getCookie('csrftoken')
+// const CSRF_TOKEN = getCookie('csrftoken')
 
 // Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
@@ -125,13 +125,14 @@ function getCookie(name) {
     return cookieValue;
 }
 
+const CSRF_TOKEN = getCookie('csrftoken')
 
 let createmember = async () => {
     let response = await fetch('/create_member/', {
         method: 'POST',
         headers: {
             'Content-Type':'application/json',
-            'X-CSRFToken': CSRF_TOKEN
+            'X-CSRFToken': CSRF_TOKEN  
         },
         mode: 'same-origin' ,
         body:JSON.stringify({
@@ -140,12 +141,14 @@ let createmember = async () => {
             'UID':UID
         })
     })
-    let memebr = await response.json()
-    return memebr
+    .catch(err => console.log(err))
+    let member = await response.json()
+    return member
 }
 
 let getmember = async (user) => {
     let response = await fetch(`/get_member/?UID=${user.uid}&room_name=${CHANNEL}`)
+    .catch(err => console.log(err))
     let member = await response.json()
     return member
 }

@@ -1,11 +1,16 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
 
-class RoomMember(models.Model):
-    name = models.CharField(max_length=200)
-    uid = models.CharField(max_length=200)
-    room_name = models.CharField(max_length=200)
+class User(AbstractUser):
+    pass
+
+
+class VideoConferenceRecord(models.Model):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='created_user')
+    joined_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='joined_user')
+    room_name = models.CharField(max_length=200, null=True)
+    call_duration = models.FloatField(null=True) 
 
     def __str__(self):
-        return self.name
+        return self.room_name

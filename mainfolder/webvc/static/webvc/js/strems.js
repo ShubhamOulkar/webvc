@@ -3,13 +3,27 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID= Number(sessionStorage.getItem('UID'))
 let NAME = sessionStorage.getItem('name')
-// const CSRF_TOKEN = getCookie('csrftoken')
+const CSRF_TOKEN = getCookie('csrftoken')
+
+
+function login(){
+    document.querySelector('#welcome-container').style.display = 'none';
+    document.querySelector('#login-page').style.display = 'block';
+    document.querySelector('#signup-page').style.display = 'none';
+}
+
+function signup(){
+    document.querySelector('#welcome-container').style.display = 'none';
+    document.querySelector('#login-page').style.display = 'none';
+    document.querySelector('#signup-page').style.display = 'block';
+}
+
 
 // Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
-let remoteUsers = {}S
+let remoteUsers = {}
 
 console.log(document.cookie)
 
@@ -30,10 +44,10 @@ let joinAndDisplayLocalStream = async () => {
 
    localTracks = await  AgoraRTC.createMicrophoneAndCameraTracks()
    
-    let member = await createmember()
+    // let member = await createmember()
 
    let player = `<div class="video-container" id="user-container-${UID}">
-                <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
+                <div class="username-wrapper"><span class="user-name">{member.name}</span></div>
                 <div class="video-player" id="user-${UID}"></div>
                 </div>`
 
@@ -54,10 +68,10 @@ let handleUserJoined = async (user, mediaType) => {
             player.remove()
         }
 
-        let member = await getmember(user)
+        // let member = await getmember(user)
 
         player = `<div  class="video-container" id="user-container-${user.uid}">
-            <div class="username-wrapper"><span class="user-name">${member.name}</span></div>
+            <div class="username-wrapper"><span class="user-name">{member.name}</span></div>
             <div class="video-player" id="user-${user.uid}"></div>
             </div>`
 
@@ -125,33 +139,32 @@ function getCookie(name) {
     return cookieValue;
 }
 
-const CSRF_TOKEN = getCookie('csrftoken')
 
-let createmember = async () => {
-    let response = await fetch('/create_member/', {
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json',
-            'X-CSRFToken': CSRF_TOKEN  
-        },
-        mode: 'same-origin' ,
-        body:JSON.stringify({
-            'name': NAME,
-            'room_name': CHANNEL,
-            'UID':UID
-        })
-    })
-    .catch(err => console.log(err))
-    let member = await response.json()
-    return member
-}
+// let createmember = async () => {
+//     let response = await fetch('/create_member/', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type':'application/json',
+//             'X-CSRFToken': CSRF_TOKEN  
+//         },
+//         mode: 'same-origin' ,
+//         body:JSON.stringify({
+//             'name': NAME,
+//             'room_name': CHANNEL,
+//             'UID':UID
+//         })
+//     })
+//     .catch(err => console.log(err))
+//     let member = await response.json()
+//     return member
+// }
 
-let getmember = async (user) => {
-    let response = await fetch(`/get_member/?UID=${user.uid}&room_name=${CHANNEL}`)
-    .catch(err => console.log(err))
-    let member = await response.json()
-    return member
-}
+// let getmember = async (user) => {
+//     let response = await fetch(`/get_member/?UID=${user.uid}&room_name=${CHANNEL}`)
+//     .catch(err => console.log(err))
+//     let member = await response.json()
+//     return member
+// }
 
 joinAndDisplayLocalStream()
 

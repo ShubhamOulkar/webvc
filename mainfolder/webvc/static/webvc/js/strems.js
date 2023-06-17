@@ -6,6 +6,8 @@ let NAME = sessionStorage.getItem('name')
 const CSRF_TOKEN = getCookie('csrftoken')
 
 
+// Script for login and sign up page
+
 function login(){
     document.querySelector('#welcome-container').style.display = 'none';
     document.querySelector('#login-page').style.display = 'block';
@@ -18,8 +20,22 @@ function signup(){
     document.querySelector('#signup-page').style.display = 'block';
 }
 
+async function check_password(){
+    password = await document.querySelector('#password').value;
+    confirmation = await document.querySelector('#confirmation').value;
 
-// Display video source to a page
+    if (password === confirmation){
+        document.querySelector('#correct-password-label').style.display = 'block';
+        document.querySelector('#incorrect-password-label').style.display = 'none';
+    }else{
+        document.querySelector('#incorrect-password-label').style.display = 'block';
+        document.querySelector('#correct-password-label').style.display = 'none';
+    }
+}
+
+
+
+// script for Display video source to a page
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []

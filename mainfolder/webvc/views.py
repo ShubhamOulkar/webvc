@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.hashers import check_password
+from django.db import IntegrityError
 
 
 def start(request):
@@ -112,4 +112,27 @@ def logout_view(request):
 
 
 def signup(request):
-    return render(request, 'webvc/signup.html')
+    if request.method == "POST":
+        if request.POST['check-mark'] == 'on':
+            username = request.POST["username"]
+            email = request.POST["email"]
+            
+            # Ensure password matches confirmation
+            password = request.POST["password"]
+            confirmation = request.POST["confirmation"]
+            if password != confirmation:
+                messages.error(request, 'Password must match')
+                return render(request, "webvc/getin.html")
+
+            # Attempt to create new user
+            try:
+                user = User.objects.create_user(username, email, password)
+                user.save()
+            except IntegrityError:
+                messages.error(request, 'Username / Email Already taken.')
+                return render(request, "webvc/getin.html")
+
+            login(request, user)
+            return HttpResponseRedirect(reverse("lobby"))
+    else:
+        return HttpResponseRedirect(reverse("start"))

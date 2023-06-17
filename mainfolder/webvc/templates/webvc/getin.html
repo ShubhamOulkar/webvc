@@ -75,7 +75,7 @@
             <button type="submit" class="myButton">Login</button>
           </div>
 
-          <!-- register button -->
+          <!-- signup button -->
           <p class="mt-5 mb-0">Don't have an account?
             <a onclick="signup()" id="login-links">Sign Up</a>
           </p>
@@ -101,21 +101,23 @@
         <form action="{% url 'signup_user' %}" method="post">{% csrf_token %}
           <!-- username input -->
           <div class="form-outline mb-4">
-            <input type="text" class="form-control form-control-lg" placeholder="Username" required autofocus />
+            <input type="text" name="username" class="form-control form-control-lg" placeholder="Username" required autofocus />
           </div>
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="email" class="form-control form-control-lg" placeholder="Email address" required />
+            <input type="email" name="email" class="form-control form-control-lg" placeholder="Email address" required />
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-4">
-            <input type="password" class="form-control form-control-lg" placeholder="Password" required />
+            <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="Password" required />
           </div>
 
           <!-- check Password input -->
           <div class="form-outline mb-4">
-            <input type="password" class="form-control form-control-lg" placeholder="Confirm Password" required />
+            <label for="confirmation" id="correct-password-label"><i class="fa-solid fa-check"></i> Password matched</label>
+            <label for="confirmation" id="incorrect-password-label"><i class="fa-solid fa-xmark"></i> Password must match.</label>
+            <input type="password" name="confirmation" id="confirmation" oninput="check_password()" class="form-control form-control-lg" placeholder="Confirm Password" required />
           </div>
 
           <div class="justify-content-around align-items-center mb-4">
@@ -131,7 +133,7 @@
             <button type="submit" class="myButton">Sign up</button>
           </div>
 
-          <!-- register button -->
+          <!-- login button -->
           <p class="mt-5 mb-0">Already have an account?
             <a onclick="login()" id="login-links">Login</a>
           </p>

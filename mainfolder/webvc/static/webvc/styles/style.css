@@ -82,6 +82,14 @@ body {
 #signup-page{
     display: none;
 }
+#correct-password-label{
+    color: #0ee049;
+    display: none;
+}
+#incorrect-password-label{
+    color: red;
+    display: none;
+}
 
 /* lobby styling */
 

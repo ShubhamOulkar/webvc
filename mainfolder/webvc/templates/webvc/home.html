@@ -22,13 +22,34 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light ">
+    <nav class="navbar sticky-top navbar-expand-lg ">
         <div class="container-fluid">
             <a class="navbar-brand">
                 <img src="{% static 'webvc/images/chat-icon.png' %}" width="30" height="24"
                     class="d-inline-block align-text-top">
                 <b>WEB-VC</b>
             </a>
+            <div class="collapse navbar-collapse ">
+                <ul class="navbar-nav ms-auto ">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout_user' %}" id="login-links">
+                            <b>Logout</b>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="login-links">
+                            <b>user: {{user.username}}</b>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <button class="btn-outline">
+                           <a href="https://github.com/ShubhamOulkar/webvc" target="_blank"><img src="{% static 'webvc/images/square-github.svg' %}" width="20px" height="20px"/></a> 
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     {% block content %}

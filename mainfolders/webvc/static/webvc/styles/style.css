@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+:root {
+    --shaddow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    background-color: rgba(232,232,239,1);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Login and signup styling */
+
+#welcome-container{
+    width: 1000px;
+    height: 400px;
+    box-shadow: var(--shaddow);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.myButton {
+	box-shadow: 0px 0px 0px 2px #0d6efd;
+	background-color:#0d6efd;
+	border-radius:5px;
+	border:1px solid #0d6efd;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	padding:12px 76px;
+	text-decoration:none;
+}
+.myButton:hover {
+	background-color:#0a4bac;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+@media screen  and (max-width:400){
+    #welcome-container{
+        width: 50%;
+        height: 50%;
+    }
+    #welcome-message h1{
+        font-size: 20px;
+    }
+}
+
+.container{
+    padding: 2px;
+    align-items: center;
+}
+
+#login-image{
+    border-radius: 5px;
+    width: 90%;
+    height: 90%;
+}
+#login-page{
+    font-family: 'Montserrat', sans-serif;
+    display: none;
+}
+
+#login-links{
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 800;
+}
+#login-links:hover{
+    color:#0a4bac;
+}
+
+#signup-page{
+    display: none;
+}
+#correct-password-label{
+    color: #0ee049;
+    display: none;
+}
+#incorrect-password-label{
+    color: red;
+    display: none;
+}
+
+/* lobby styling */
+
+#logo {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+
+#form-container{
+    width: 600px;
+    box-shadow: var(--shaddow);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+
+#welcome-message{
+    text-align: center;
+    margin: 20px;
+}
+
+#welcome-message h3{
+   font-size:30px ;
+}
+
+#welcome-message p{
+    font-size:20px ;
+ }
+
+.form-field {
+    margin: 20px;
+}
+
+.form-field label{
+    margin: 16px;
+    line-height: 1.7em;
+}
+
+.form-field input{
+    width: 100%;
+    border: 2px solid rgba(198,202,219,1);
+    border-radius: 5px;
+    box-sizing: content-box;
+    height: 5vh;
+}
+
+.form-field input[type='submit']{
+    background-color: rgba(75,93,72,1);
+    border: none;
+    color: #fff;
+    height: 5vh;
+}
+
+@media screen  and (max-width:450){
+    #form-container{
+        width: 95%;
+    }
+    #welcome-message h1{
+        font-size: 24px;
+    }
+}
+
+/* Room styling */
+
+#room-name-wrapper{
+    text-align: center;
+    font-size: 18px;
+}
+
+
+#video-strems{
+    display: flex;
+    flex-wrap: wrap;
+    height: 75vh;
+    width: 65%;
+    margin: 0 auto;
+}
+
+.video-container{
+    flex-basis: 500px;
+    flex-grow: 1;
+    max-height: 100%;
+    min-height: 350px;
+    border: 1px solid rgb(75,95,172,1);
+    margin: 2px;
+    border-radius: 5px;
+    background-color: rgb(198,202,210,1);
+    position: relative;
+}
+.video-player{
+    height: 100%;
+    width: 100%;
+}
+
+.username-wrapper{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    background-origin: 5px;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+@media  screen and (max-width:1650px) {
+    .video-container{
+        flex-basis:300px;
+        min-height: 200px;
+    }
+}
+
+
+/* Controls styling  */
+
+#controls-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    column-gap: 1em;
+    position: fixed;
+    padding-top: 5px;
+}
+
+.video-player > *{
+    border-radius: 5px;
+}
+
+.hostVC-button {
+	background-color:#7892c2;
+	border-radius:5px;
+	border:2px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+    width: 35px;
+    height: 35px;
+}
+.hostVC-button:hover {
+	background-color:#476e9e;
+}
+.hostVC-button:active {
+	position:relative;
+	top:1px;
+}
+
+        

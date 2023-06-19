@@ -28,7 +28,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') #'django-insecure-9ng$e16()x3%r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['webvc.up.railway.app','127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://webvc.up.railway.app']
 
 CSRF_COOKIE_SECURE = True
 

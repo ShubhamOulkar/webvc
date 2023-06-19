@@ -8,7 +8,7 @@ class User(AbstractUser):
 
 class VideoConferenceRecord(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='created_user')
-    joined_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='joined_user')
+    uid = models.CharField(max_length=1000, null=True)
     room_name = models.CharField(max_length=200, null=True)
     call_duration = models.FloatField(null=True) 
 

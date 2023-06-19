@@ -12,8 +12,8 @@ body {
 /* Login and signup styling */
 
 #welcome-container{
-    width: 800px;
-    height: 350px;
+    width: 1000px;
+    height: 400px;
     box-shadow: var(--shaddow);
     background-color: #fff;
     padding: 30px;
@@ -49,6 +49,7 @@ body {
 @media screen  and (max-width:400){
     #welcome-container{
         width: 50%;
+        height: 50%;
     }
     #welcome-message h1{
         font-size: 20px;
@@ -100,7 +101,7 @@ body {
 }
 
 #form-container{
-    width: 400px;
+    width: 600px;
     box-shadow: var(--shaddow);
     background-color: #fff;
     padding: 30px;
@@ -118,13 +119,13 @@ body {
     margin: 20px;
 }
 
-#welcome-message h1{
-   font-size:36px ;
+#welcome-message h3{
+   font-size:30px ;
 }
 
 #welcome-message p{
-   font-size: 16px;
-}
+    font-size:20px ;
+ }
 
 .form-field {
     margin: 20px;
@@ -170,8 +171,8 @@ body {
 #video-strems{
     display: flex;
     flex-wrap: wrap;
-    height: 85vh;
-    width: 75%;
+    height: 75vh;
+    width: 65%;
     margin: 0 auto;
 }
 
@@ -220,23 +221,28 @@ body {
     justify-content: center;
     column-gap: 1em;
     position: fixed;
-    bottom: 20px;
-}
-
-.control-icon{
-    height: 20px;
-    width: 20px;
-    box-shadow: var(--shaddow);
-    background-color: #fff;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#leave-btn{
-    background-color: rgb(255,80,80,1);
+    padding-top: 5px;
 }
 
 .video-player > *{
     border-radius: 5px;
 }
+
+.hostVC-button {
+	background-color:#7892c2;
+	border-radius:5px;
+	border:2px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+    width: 35px;
+    height: 35px;
+}
+.hostVC-button:hover {
+	background-color:#476e9e;
+}
+.hostVC-button:active {
+	position:relative;
+	top:1px;
+}
+
+        

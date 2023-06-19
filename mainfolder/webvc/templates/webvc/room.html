@@ -3,19 +3,19 @@
 {% block content %}
 <main>
     <section id="room-name-wrapper">
-        <p>Room Name: <span id="room-name"></span></p>
+        <p>Channel Name: <span id="room-name"></span></p>
     </section>
     <section id="video-strems"></section>
 
     <section id="controls-wrapper">
-        <div class="icon-wrapper">
-            <img class="control-icon" id="mic-btn" src="{% static 'webvc/images/microphone.svg' %}">
+        <div class="controlwrapper">
+            <button class="hostVC-button" id="mic-but"><i class="fa-solid fa-microphone"></i></button>
         </div>
-        <div class="icon-wrapper">
-            <img class="control-icon" id="video-btn" src="{% static 'webvc/images/video.svg' %}">
+        <div class="controlwrapper">
+            <button class="hostVC-button" id="video-but"><i class="fa-solid fa-video"></i></button>
         </div>
-        <div class="icon-wrapper">
-            <img class="control-icon" id="leave-btn" src="{% static 'webvc/images/leave.svg' %}">
+        <div class="controlwrapper">
+            <button class="hostVC-button" id="leave-but"><i class="fa-solid fa-power-off"></i></button>
         </div>
     </section>
 </main>

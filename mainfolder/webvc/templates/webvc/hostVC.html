@@ -4,42 +4,42 @@
 
 <main>
     <section id="form-container">
-        <img id="logo" src="{% static 'webvc/images/chat-icon.png' %}" alt="logo">
-
         <div id="welcome-message">
-            <h1>Welcome to Web Video Conferencing Django app</h1>
-            <p>Group video calling application for you</p>
+            <h3>{{username}}, Create your Channel</h1>
+            <sub>share channel name with your friend</sub>
         </div>
 
         <form id="form">
             <div class="form-field">
-                <input type="text" name="room" placeholder="Enter a channel name"> 
+                <input type="text" name="username" value="{{username}}" > 
             </div>
             <div class="form-field">
-                <input type="text" name="username" placeholder="Enter your name"> 
+                <input type="text" name="room" placeholder="Enter a channel name" autofocus required> 
             </div>
             <div class="form-field">
                 <input type="submit" value="join strem">
             </div>
         </form>
-    </section>
-
-    
+    </section>  
 </main>
+
+<!-- This script will generate new token with new channel name -->
 <script type="text/javascript">
     let form = document.getElementById('form')
 
     let handleSubmit = async (e) => {
         e.preventDefault()
-        let room = e.target.room.value.toUpperCase()
+        let room = e.target.room.value
         let name = e.target.username.value
 
+        // fetch API to generate channel from django
         let response = await fetch(`/get_token/?channel=${room}`)
         let data = await response.json()
 
         let uid = data.uid
         let token = data.token
 
+        // store in browser session storage 
         sessionStorage.setItem('UID', uid)
         sessionStorage.setItem('token', token)
         sessionStorage.setItem('room', room)

@@ -1,3 +1,9 @@
+from django.contrib.auth import authenticate, logout, login
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.shortcuts import render
 from agora_token_builder import RtcTokenBuilder
 from django.http import JsonResponse
@@ -6,12 +12,6 @@ import time
 import re
 import json
 from .models import *
-from django.contrib.auth import authenticate, logout, login
-from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.db import IntegrityError
 
 
 def start(request):
@@ -38,28 +38,29 @@ def room(request):
     return render(request,'webvc/room.html')
 
 @login_required(login_url="/login/")
-def lobby(request):
-    return render(request,'webvc/lobby.html')
+def hostVC(request):
+    return render(request,'webvc/hostVC.html',{'username':request.user.username})
 
 
-# def createuser(request):
-#     data = json.loads(request.body)
-#     member, created = RoomMember.objects.get_or_create(
-#         name = data['name'],
-#         uid=data['UID'],
-#         room_name=data['room_name']
-#     )
-#     return JsonResponse({'name':data['name']}, safe=False)
+def savechannel(request):
+    data = json.loads(request.body)
+    member, created = VideoConferenceRecord.objects.get_or_create(
+        created_by = User.objects.get(username=data['name']),
+        uid=data['UID'],
+        room_name=data['room_name']
+    )
+    return JsonResponse({'name':data['name']}, safe=False)
 
 
-# def getmember(request):
-#     uid = request.GET.get('UID')
-#     room_name = request.GET.get('room_name')
+def joinmember(request):
+    uid = request.GET.get('UID')
+    room_name = request.GET.get('room_name')
 
-#     member = RoomMember.objects.get(uid=uid, room_name=room_name)
+    member = VideoConferenceRecord.objects.get(uid=uid, room_name=room_name)
 
-#     name = member.name
-#     return JsonResponse({'name':name}, safe=False)
+    name = member.created_by.username
+
+    return JsonResponse({'name':name}, safe=False)
 
 
 def login_view(request):
@@ -101,7 +102,7 @@ def login_view(request):
             # Check if authentication successful
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse("lobby"))
+                return HttpResponseRedirect(reverse("vcRoom"))
             else:
                 return HttpResponseRedirect(reverse("start"))
 
@@ -126,13 +127,13 @@ def signup(request):
 
             # Attempt to create new user
             try:
-                user = User.objects.create_user(username, email, password)
+                user = User.objects.create_user(username, email, password) # type: ignore
                 user.save()
             except IntegrityError:
                 messages.error(request, 'Username / Email Already taken.')
                 return render(request, "webvc/getin.html")
 
             login(request, user)
-            return HttpResponseRedirect(reverse("lobby"))
+            return HttpResponseRedirect(reverse("vcRoom"))
     else:
         return HttpResponseRedirect(reverse("start"))

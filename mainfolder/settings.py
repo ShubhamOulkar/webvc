@@ -29,9 +29,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') #'django-insecure-9ng$e16()x3%r
 DEBUG = False
 
 ALLOWED_HOSTS = ['webvc.up.railway.app','127.0.0.1']
+
 CSRF_TRUSTED_ORIGINS = ['https://webvc.up.railway.app']
 
-CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
@@ -140,6 +141,6 @@ STATIC_ROOT = BASE_DIR /'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_SECURE = True
 
-STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9ng$e16()x3%r87xhwwt9r2lv98v-9)(t!%2*x-u%xk_7j)_s1'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') #'django-insecure-9ng$e16()x3%r87xhwwt9r2lv98v-9)(t!%2*x-u%xk_7j)_s1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -128,4 +130,4 @@ STATICFILES_DIRS =[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+SESSION_COOKIE_SECURE = True

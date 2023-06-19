@@ -12,6 +12,7 @@ import time
 import re
 import json
 from .models import *
+import os
 
 
 def start(request):
@@ -21,8 +22,8 @@ def start(request):
 #Build token with uid
 @login_required(login_url="/login/")
 def getToken(request):
-    appId = '4c883b025263435eae98296fcaabc6cf'
-    appCertificate = 'a58f1f9a36d74146919359227c39bce8'
+    appId = os.environ.get('appId')#'4c883b025263435eae98296fcaabc6cf'
+    appCertificate = os.environ.get('appCertificate')# 'a58f1f9a36d74146919359227c39bce8'
     channelName = request.GET.get('channel')
     uid = random.randint(1,230)
     tokenexpirationtime = 3600 * 24

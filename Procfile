@@ -1,0 +1,1 @@
+web: python manage.py migrate && python manage.py collectstaic && gunicorn locallibrary.wsgi

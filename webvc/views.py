@@ -91,7 +91,7 @@ def login_view(request):
                     messages.error(request, "Email does not exist")
             else :
                 try:
-                    username = User.objects.get(username=email_username)
+                    username = User.objects.get(username=email_username.lower())
                     user = authenticate(request, username=email_username, password=password)
 
                     if user is None:
@@ -120,7 +120,7 @@ def logout_view(request):
 def signup(request):
     if request.method == "POST":
         if request.POST['check-mark'] == 'on':
-            username = request.POST["username"]
+            username.lower() = request.POST["username"]
             email = request.POST["email"]
             
             # Ensure password matches confirmation

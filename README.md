@@ -8,7 +8,7 @@
 3. Screensharing.
 
 ### Technology:
-1. WebRTC
+1. WebRTC (agora)
 2. Python (Django)
 3. Database (PostgreSQL)
 4. HTML

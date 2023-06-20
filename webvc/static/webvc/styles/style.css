@@ -147,10 +147,10 @@ body {
         font-size:25px ;
      }
      
-     #welcome-message sub{
+    #welcome-message sub{
          font-size:15px ;
       }
-      :-ms-input-placeholder{
+    input::placeholder{
         font-size: 10px;
       }
     

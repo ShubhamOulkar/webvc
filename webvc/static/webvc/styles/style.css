@@ -148,6 +148,13 @@ body {
         height: 3vh;
         font-size: 14px;
     }
+    #welcome-message h1, h3{
+        font-size:20px ;
+     }
+     
+     #welcome-message sub{
+         font-size:10px ;
+      }
 }
 
 /* Room styling */

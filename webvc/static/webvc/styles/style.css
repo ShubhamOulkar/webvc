@@ -117,11 +117,6 @@ body {
     margin: 20px;
 }
 
-.form-field label{
-    margin: 16px;
-    line-height: 1.7em;
-}
-
 .form-field input{
     border: 2px solid rgba(198,202,219,1);
     border-radius: 5px;
@@ -142,19 +137,20 @@ body {
 
 @media only screen and (max-width: 750px){
     .form-field input{
-        height: 2vh;
+        height: 3vh;
     }
     .form-field input[type='submit']{
-        height: 3vh;
+        height: 4vh;
         font-size: 14px;
     }
     #welcome-message h1, h3{
-        font-size:20px ;
+        font-size:25px ;
      }
      
      #welcome-message sub{
-         font-size:10px ;
+         font-size:15px ;
       }
+    
 }
 
 /* Room styling */

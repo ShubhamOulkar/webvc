@@ -120,7 +120,7 @@ def logout_view(request):
 def signup(request):
     if request.method == "POST":
         if request.POST['check-mark'] == 'on':
-            username.lower() = request.POST["username"]
+            username = request.POST["username"].lower()
             email = request.POST["email"]
             
             # Ensure password matches confirmation

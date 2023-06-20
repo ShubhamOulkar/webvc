@@ -29,6 +29,11 @@
                     class="d-inline-block align-text-top">
                 <b>WEB-VC</b>
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
             <div class="collapse navbar-collapse ">
                 <ul class="navbar-nav ms-auto ">
                     {% if user.is_authenticated %}
@@ -45,7 +50,9 @@
                     {% endif %}
                     <li class="nav-item">
                         <button class="btn-outline">
-                           <a href="https://github.com/ShubhamOulkar/webvc" target="_blank"><img src="{% static 'webvc/images/square-github.svg' %}" width="20px" height="20px"/></a> 
+                            <a href="https://github.com/ShubhamOulkar/webvc" target="_blank"><img
+                                    src="{% static 'webvc/images/square-github.svg' %}" width="20px"
+                                    height="20px" /></a>
                         </button>
                     </li>
                 </ul>

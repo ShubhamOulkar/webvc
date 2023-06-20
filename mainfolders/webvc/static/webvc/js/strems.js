@@ -82,6 +82,8 @@ let leaveAndRemoveLocalStream = async () => {
     window.open('/vcRoom/', '_self')
 }
 
+
+
 let toggleCamera = async (e) => {
     if (localTracks[1].muted){
         await localTracks[1].setMuted(false)

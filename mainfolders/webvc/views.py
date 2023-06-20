@@ -15,11 +15,14 @@ from .models import *
 
 
 def start(request):
-    return render(request, 'webvc/getin.html')
+    if not request.user.is_authenticated:
+        return render(request, 'webvc/getin.html')
+    else:
+        return render(request, 'webvc/hostVC.html',{'username':request.user.username})
 
 
 #Build token with uid
-@login_required(login_url="/login/")
+@login_required(login_url="/start/")
 def getToken(request):
     appId = '4c883b025263435eae98296fcaabc6cf'
     appCertificate = 'a58f1f9a36d74146919359227c39bce8'
@@ -33,11 +36,11 @@ def getToken(request):
     return JsonResponse({'token':token, 'uid':uid},safe=False)
 
 
-@login_required(login_url="/login/")
+@login_required(login_url="/start/")
 def room(request):
     return render(request,'webvc/room.html')
 
-@login_required(login_url="/login/")
+@login_required(login_url="/start/")
 def hostVC(request):
     return render(request,'webvc/hostVC.html',{'username':request.user.username})
 
@@ -99,12 +102,12 @@ def login_view(request):
                     messages.error(request, "Username does not exist")
                 
                 
-            # Check if authentication successful
-            if user is not None:
-                login(request, user)
-                return HttpResponseRedirect(reverse("vcRoom"))
-            else:
-                return HttpResponseRedirect(reverse("start"))
+        # Check if authentication successful
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("vcRoom"))
+        else:
+            return HttpResponseRedirect(reverse("start"))
 
 
 def logout_view(request):

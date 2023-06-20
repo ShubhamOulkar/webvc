@@ -3,21 +3,24 @@
 {% block content %}
 
 <main>
-    <section id="form-container">
+    <section id="form-container" class="container">
+        
         <div id="welcome-message">
-            <h3>{{username}}, Create your Channel</h1>
+            <h3>{{username}}, Create your Channel</h3>
             <sub>share channel name with your friend</sub>
         </div>
 
+        <img id="logo" src="{% static 'webvc/images/welcom_icon.png' %}" alt="logo">
+
         <form id="form">
-            <div class="form-field">
-                <input type="text" name="username" value="{{username}}" > 
+            <div class="form-field mb-3">
+                <input type="text" class="form-control" name="username" value="{{username}}" > 
+            </div>
+            <div class="form-field mb-3">
+                <input type="text" name="room"  class="form-control" placeholder="Enter a channel name" autofocus required> 
             </div>
             <div class="form-field">
-                <input type="text" name="room" placeholder="Enter a channel name" autofocus required> 
-            </div>
-            <div class="form-field">
-                <input type="submit" value="join strem">
+                <input type="submit"  value="Join Channel">
             </div>
         </form>
     </section>  

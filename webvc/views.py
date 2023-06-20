@@ -91,7 +91,7 @@ def login_view(request):
                     messages.error(request, "Email does not exist")
             else :
                 try:
-                    username = User.objects.get(username=email_username)
+                    username = User.objects.get(username=email_username.lower())
                     user = authenticate(request, username=email_username.lower(), password=password)
 
                     if user is None:

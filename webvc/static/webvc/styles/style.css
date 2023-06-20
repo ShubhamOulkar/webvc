@@ -86,7 +86,7 @@ body {
 }
 
 #form-container{
-    width: 600px;
+    width: 60%;
     box-shadow: var(--shaddow);
     background-color: #fff;
     padding: 30px;
@@ -94,7 +94,7 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-
+    height: 70%;
     transform: translate(-50%, -50%);
 }
 
@@ -104,7 +104,7 @@ body {
     margin: 20px;
 }
 
-#welcome-message h1{
+#welcome-message h1, h3{
    font-size:40px ;
    font-weight: 800;
 }
@@ -123,7 +123,6 @@ body {
 }
 
 .form-field input{
-    width: 100%;
     border: 2px solid rgba(198,202,219,1);
     border-radius: 5px;
     box-sizing: content-box;
@@ -131,18 +130,23 @@ body {
 }
 
 .form-field input[type='submit']{
-    background-color: rgba(75,93,72,1);
+    background-color: #0d6efd;
     border: none;
     color: #fff;
     height: 5vh;
 }
+.form-field input[type='submit']:hover{
+    background-color:#0a4bac;
+}
 
-@media screen  and (max-width:450){
-    #form-container{
-        width: 95%;
+
+@media only screen and (max-width: 750px){
+    .form-field input{
+        height: 2vh;
     }
-    #welcome-message h1{
-        font-size: 24px;
+    .form-field input[type='submit']{
+        height: 3vh;
+        font-size: 14px;
     }
 }
 

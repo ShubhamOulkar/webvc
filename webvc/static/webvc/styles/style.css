@@ -79,6 +79,12 @@ body {
 
 /* hostVC styling */
 
+#logo {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+
 #form-container{
     width: 60%;
     box-shadow: var(--shaddow);
@@ -147,7 +153,9 @@ body {
     input::placeholder{
         font-size: 20px;
       }
-    
+    #logo {
+        width: 75px;
+    }
 }
 
 /* Room styling */

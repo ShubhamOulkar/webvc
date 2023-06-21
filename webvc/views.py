@@ -134,6 +134,7 @@ def send_email(request):
         except User.DoesNotExist:
             to_email = False
             message = "Following email is not valid."
+            return JsonResponse({'message':message, 'email':email['email'], 'status':False}, safe=False)
             
         from_email = settings.EMAIL_HOST_USER
         if subject and code and to_email:

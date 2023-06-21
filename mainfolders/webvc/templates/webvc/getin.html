@@ -67,7 +67,7 @@
               <input class="form-check-input" type="checkbox" name="check-mark" id="check-mark" required />
               <label class="form-check-label" for="check-mark"> I agree to terms and conditions </label>
             </div>
-            <a href="{% url 'send_email' %}" id="login-links" >Forgot password?</a>
+            <a href="{% url 'send_email' %}" id="login-links" target="_blank">Forgot password?</a>
           </div>
 
           <!-- Submit button -->
@@ -136,7 +136,7 @@
 
           <!-- Submit button -->
           <div class="col-md-12 mb-4">
-            <button type="submit" class="myButton">Sign up</button>
+            <button id="confirm-btn" type="submit" class="myButton" >Sign up</button>
           </div>
 
           <!-- login button -->

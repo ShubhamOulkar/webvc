@@ -120,45 +120,56 @@ def logout_view(request):
     return HttpResponseRedirect(reverse("start"))
 
 
-# send email for verification
+# API -> send email for verification
 def send_email(request):
     if request.method == 'POST':
+        email = json.loads(request.body)
         subject = 'webVC Reset Password varification'
         global code
         code = random.choices(number_list, k=6)
         # check email exist or not
-        to_email = request.POST.get("from_email")
+        to_email = email['email']
         try:
             email = User.objects.get(email=to_email)
         except User.DoesNotExist:
             to_email = False
-            messages.success(request,"Make sure to enter valid email.")
-
+            message = "Following email is not valid."
+            
         from_email = settings.EMAIL_HOST_USER
         if subject and code and to_email:
             try:
                 send_mail(subject, ''.join(map(str,code)), from_email, [to_email])
             except BadHeaderError:
                 return HttpResponse("Invalid header found.")
-            messages.success(request,"verification code is send to your email")
-
+            message = "verification code is send to following email." 
+            return JsonResponse({'message':message, 'email':to_email}, safe=False)      
     return render(request, 'webvc/forgetpassword.html')
+        
 
-
+# API -> verify user received code
 def verify_code(request):
     if request.method == 'POST':
-        code0 = request.POST.get('verify-code')
-        print(code0)
-        if code0 == ''.join(map(str,code)):
-            messages.success(request,"verification is done! now set your password")
+        code0 = json.loads(request.body)
+        
+        if code0['code'] == ''.join(map(str,code)):
+            message = "verification is done! now set your password for following email."
+            status = True
         else:
-            messages.success(request,"verification failed!")
-    return render(request, 'webvc/forgetpassword.html')
+            message = "verification failed! for following email."
+            status = False
+            return JsonResponse({'message':message,'email':code0['email'], 'status':status}, safe=False)
+        return JsonResponse({'message':message,'email':code0['email']}, safe=False) 
 
 
-
+# API -> reset and save new password
 def reset_password(request):
-    return render(request, 'webvc/forgetpassword.html')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        password = data['password']
+        user = User.objects.get(email=data['email'])
+        user.set_password(password)
+        user.save()
+    return JsonResponse({'message':'Password Saved, try login for following email'}, safe=False)
 
 
 def signup(request):

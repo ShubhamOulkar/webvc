@@ -235,4 +235,29 @@ body {
 	top:1px;
 }
 
+
+/* forgot password styling */
      
+#verify-code, #reset-password, #redirect-login{
+    display: none;
+}
+
+#password-container{
+    width: 30%;
+    height: 40%;
+    box-shadow: var(--shaddow);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#send-email, #verify-code{
+    margin: 10%;
+}
+#send-email input, #verify-code input, #reset-password input{
+    padding: 3px;
+    margin: 2px;
+}

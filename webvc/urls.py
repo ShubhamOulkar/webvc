@@ -11,4 +11,7 @@ urlpatterns = [
     path('get_token/', views.getToken),
     path('savechannel/', views.savechannel),
     path('join_member/', views.joinmember),
+    path('send_email/',views.send_email, name='send_email'),
+    path('verify_code/',views.verify_code, name='verify_code'),
+    path('reset_password/', views.reset_password, name='reset_password'),
 ]

@@ -7,6 +7,9 @@ from django.db import IntegrityError
 from django.shortcuts import render
 from agora_token_builder import RtcTokenBuilder
 from django.http import JsonResponse
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 import random 
 import time
 import re
@@ -14,6 +17,7 @@ import json
 from .models import *
 import os
 
+number_list = [0,1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
 def start(request):
     if not request.user.is_authenticated:
@@ -115,6 +119,59 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("start"))
+
+# API -> send email for verification
+def send_email(request):
+    if request.method == 'POST':
+        email = json.loads(request.body)
+        subject = 'webVC Reset Password varification'
+        global code
+        code = random.choices(number_list, k=6)
+        # check email exist or not
+        to_email = email['email']
+        try:
+            email = User.objects.get(email=to_email)
+        except User.DoesNotExist:
+            to_email = False
+            message = "Following email is not valid."
+            
+        from_email = settings.EMAIL_HOST_USER
+        if subject and code and to_email:
+            try:
+                send_mail(subject, ''.join(map(str,code)), from_email, [to_email])
+            except BadHeaderError:
+                return HttpResponse("Invalid header found.")
+            message = "verification code is send to following email." 
+            return JsonResponse({'message':message, 'email':to_email}, safe=False)      
+    return render(request, 'webvc/forgetpassword.html')
+        
+
+# API -> verify user received code
+def verify_code(request):
+    if request.method == 'POST':
+        code0 = json.loads(request.body)
+        
+        if code0['code'] == ''.join(map(str,code)):
+            message = "verification is done! now set your password for following email."
+            status = True
+        else:
+            message = "verification failed! for following email."
+            status = False
+            return JsonResponse({'message':message,'email':code0['email'], 'status':status}, safe=False)
+        return JsonResponse({'message':message,'email':code0['email']}, safe=False) 
+
+
+# API -> reset and save new password
+def reset_password(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        password = data['password']
+        user = User.objects.get(email=data['email'])
+        user.set_password(password)
+        user.save()
+    return JsonResponse({'message':'Password Saved, try login for following email'}, safe=False)
+
+
 
 
 def signup(request):

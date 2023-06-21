@@ -164,9 +164,9 @@ function signup(){
     document.querySelector('#signup-page').style.display = 'block';
 }
 
-function check_password(){
-    password =  document.querySelector('#password').value;
-    confirmation =  document.querySelector('#confirmation').value;
+async function check_password(){
+     password = await document.querySelector('#password').value;
+     confirmation = await document.querySelector('#confirmation').value;
 
     if (password === confirmation){
         document.querySelector('#correct-password-label').style.display = 'block';

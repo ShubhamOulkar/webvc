@@ -7,11 +7,16 @@ from django.db import IntegrityError
 from django.shortcuts import render
 from agora_token_builder import RtcTokenBuilder
 from django.http import JsonResponse
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
 import random 
 import time
 import re
 import json
 from .models import *
+
+number_list = [0,1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
 
 def start(request):
@@ -113,6 +118,47 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("start"))
+
+
+# send email for verification
+def send_email(request):
+    if request.method == 'POST':
+        subject = 'webVC Reset Password varification'
+        global code
+        code = random.choices(number_list, k=6)
+        # check email exist or not
+        to_email = request.POST.get("from_email")
+        try:
+            email = User.objects.get(email=to_email)
+        except User.DoesNotExist:
+            to_email = False
+            messages.success(request,"Make sure to enter valid email.")
+
+        from_email = settings.EMAIL_HOST_USER
+        if subject and code and to_email:
+            try:
+                send_mail(subject, ''.join(map(str,code)), from_email, [to_email])
+            except BadHeaderError:
+                return HttpResponse("Invalid header found.")
+            messages.success(request,"verification code is send to your email")
+
+    return render(request, 'webvc/forgetpassword.html')
+
+
+def verify_code(request):
+    if request.method == 'POST':
+        code0 = request.POST.get('verify-code')
+        print(code0)
+        if code0 == ''.join(map(str,code)):
+            messages.success(request,"verification is done! now set your password")
+        else:
+            messages.success(request,"verification failed!")
+    return render(request, 'webvc/forgetpassword.html')
+
+
+
+def reset_password(request):
+    return render(request, 'webvc/forgetpassword.html')
 
 
 def signup(request):

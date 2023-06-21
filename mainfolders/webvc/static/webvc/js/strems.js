@@ -178,6 +178,7 @@ function check_password(){
 }
 
 
+
 joinAndDisplayLocalStream()
 
 document.getElementById('leave-but').addEventListener('click', leaveAndRemoveLocalStream)

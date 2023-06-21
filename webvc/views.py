@@ -26,8 +26,8 @@ def start(request):
 #Build token with uid
 @login_required(login_url="/start/")
 def getToken(request):
-    appId = os.environ.get('appId')#'4c883b025263435eae98296fcaabc6cf'
-    appCertificate = os.environ.get('appCertificate')# 'a58f1f9a36d74146919359227c39bce8'
+    appId = os.environ.get('appId')
+    appCertificate = os.environ.get('appCertificate')
     channelName = request.GET.get('channel')
     uid = random.randint(1,230)
     tokenexpirationtime = 3600 * 24

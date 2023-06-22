@@ -6,6 +6,8 @@ let NAME = sessionStorage.getItem('name')
 const CSRF_TOKEN = getCookie('csrftoken')
 
 // script for Display video source to a page
+
+// initiate the voice SDK engine
 const client = AgoraRTC.createClient({mode:'rtc', codec:'vp8'})
 
 let localTracks = []
@@ -13,17 +15,17 @@ let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL;
-
+    // set required event listners
     client.on('user-published', handleUserJoined)
     client.on('user-left', handleUserLeft)
-
+    // join channel after retrieve of token for channel
     try {
         await client.join(APP_ID, CHANNEL, TOKEN, UID)
     }catch(error){
         console.error(error)
         window.open('/vcRoom/','_self')
     }
-
+    // create audio and video tracks
    localTracks = await  AgoraRTC.createMicrophoneAndCameraTracks()
 
    let creator = await savechannel()
@@ -34,14 +36,15 @@ let joinAndDisplayLocalStream = async () => {
                 </div>`
 
     document.getElementById('video-strems').insertAdjacentHTML('beforeend', player)
-
+    // play video track for user
     localTracks[1].play(`user-${UID}`)
-
+    // push audio and video tracks to channel
     await client.publish([localTracks[0],localTracks[1]])
 }
 
 let handleUserJoined = async (user, mediaType) => {
     remoteUsers[user.uid] = user
+    // add remote user to channel, media types are audio or video 
     await client.subscribe(user, mediaType)
 
     if (mediaType === 'video'){
@@ -58,6 +61,7 @@ let handleUserJoined = async (user, mediaType) => {
             </div>`
 
         document.querySelector('#video-strems').insertAdjacentHTML('beforeend', player)
+        // remote user video track
         user.videoTrack.play(`user-${user.uid}`)
     }
 
@@ -68,6 +72,7 @@ let handleUserJoined = async (user, mediaType) => {
 
 
 let handleUserLeft = async (user) => {
+    // remote user video call leave
     delete remoteUsers[user.uid]
     document.getElementById(`user-container-${user.uid}`).remove()
 }
@@ -75,9 +80,11 @@ let handleUserLeft = async (user) => {
 
 let leaveAndRemoveLocalStream = async () => {
     for (let i = 0 ; localTracks.length >i ; i++){
+        // stop local tracks
         localTracks[i].stop()
         localTracks[i].close()
     }
+    // leave local user
     await client.leave()
     window.open('/vcRoom/', '_self')
 }

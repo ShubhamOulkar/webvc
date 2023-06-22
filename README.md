@@ -6,7 +6,7 @@
 - [Project overview](#Project-overview)
 - [Technology](#Technology)
 - [Key Features](#Key-Features)
-- [How to run application ?](#How-to-run-application-?)
+- [How to run application locally ?](#How-to-run-application-?)
 - [How webRTC (agora) works ?](#How-webRTC-(agora)-works-?)
 
 <div id="Live-Demo-link"/>
@@ -46,7 +46,35 @@ The application aims to provide a seamless and intuitive user experience for web
 
 <div id="How-to-run-application-?"/>
 
-### How to run application ?
+### How to run application locally ?
+#### 1 - Clone repo
+```
+ git clone https://github.com/ShubhamOulkar/webvc.git
+```
+#### 2 - Create/activate virtual environment in your current directory
+
+#### 3 - Install requirements
+```
+pip install -r requirements.txt
+```
+#### 4 - change directory to mainfolders
+```
+cd mainfolders
+```
+#### 5 - User text editor to update following code
+1. open **mainfolders/webvc/views.py** file and add appId and appCertificate from agora.
+![](mainfolders/webvc/static/webvc/images/appId.png)
+
+2. open **mainfolders/webvc/static/webvc/js/strems.js** add APP_ID here as well.
+
+3. open **mainfolders/mainfolder/settings.py** add EMAIL_HOST_USER and EMAIL_HOST_PASSWORD.
+![]](mainfolders/webvc/static/webvc/images/email.png)
+
+### 8 - Start server
+```
+python manage.py runserver
+```
+
 
 <div id="How-webRTC-(agora)-works-?"/>
 

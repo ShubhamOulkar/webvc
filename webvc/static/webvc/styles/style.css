@@ -259,10 +259,5 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-#send-email, #verify-code{
-    margin: 10%;
-}
-#send-email input, #verify-code input, #reset-password input{
-    padding: 3px;
-    margin: 2px;
-}        
+
+      

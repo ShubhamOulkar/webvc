@@ -260,4 +260,9 @@ body {
     transform: translate(-50%, -50%);
 }
 
-      
+@media only screen and (max-width: 900px){
+    #password-container{
+        width: 70%;
+        height: 60%;
+    }
+}     

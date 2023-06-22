@@ -63,12 +63,14 @@ cd mainfolders
 ```
 #### 5 - User text editor to update following code
 1. open **mainfolders/webvc/views.py** file and add appId and appCertificate from agora.
+    **[How to get appID and appCertificate](https://docs.agora.io/en/voice-calling/reference/manage-agora-account?platform=web)**
 ![](mainfolders/webvc/static/webvc/images/appId.png)
 
 2. open **mainfolders/webvc/static/webvc/js/strems.js** add APP_ID here as well.
 
 3. open **mainfolders/mainfolder/settings.py** add EMAIL_HOST_USER and EMAIL_HOST_PASSWORD.
-![]](mainfolders/webvc/static/webvc/images/email.png)
+    if you are using gmail then see [how to get gmail app password.](https://www.getmailbird.com/gmail-app-password/)
+![](mainfolders/webvc/static/webvc/images/email.png)
 
 ### 8 - Start server
 ```

@@ -117,7 +117,7 @@ To implement this logic, you take the following steps:
 
 3. Create and publish the audio track:
 
- Call **createMicrophoneAndCameraTracks** to create an audio track.
+    Call **createMicrophoneAndCameraTracks** to create an audio track.
 
 4. Publish the audio track by calling publish.
 
@@ -194,3 +194,10 @@ for (let i = 0 ; localTracks.length >i ; i++){
     // leave local user
     await client.leave()
 ```
+
+<div id="license"/>
+
+### License
+This project is licensed under the Apache License.
+
+Feel free to customize the content and structure of the README.md file according to your specific project requirements and information.

@@ -6,7 +6,7 @@
 - [Project overview](###Project-overview)
 - [Technology](###Technology)
 - [Key Features](###Key-Features)
-- [How to run application ?](####How-to-run-application-?)
+- [How to run application ?](#How-to-run-application-?)
 - [How webRTC (agora) works ?](###How-webRTC-(agora)-works-?)
 
 ### [Live Demo link](https://webvc.up.railway.app)

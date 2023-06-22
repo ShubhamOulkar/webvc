@@ -2,20 +2,23 @@
 
 ## Table of Contents
 
-- [LIVE DEMO](###Live-Demo-link)
-- [Project overview](###Project-overview)
-- [Technology](###Technology)
+- [LIVE DEMO](#Live-Demo-link)
+- [Project overview](#Project-overview)
+- [Technology](#Technology)
 - [Key Features](###Key-Features)
 - [How to run application ?](#How-to-run-application-?)
 - [How webRTC (agora) works ?](###How-webRTC-(agora)-works-?)
 
+<div id="Live-Demo-link"/>
 ### [Live Demo link](https://webvc.up.railway.app)
 
+<div id="Project-overview"/>
 ### Project overview:
 This project is a web video calling application that utilizes the [Agora Real-Time Communication (RTC) SDK](https://www.agora.io/en/) to enable real-time video communication between users. The application incorporates essential features such as user signup, forget password capability, password matching functionality for the signup page, and additional controls for the video call experience, including mic mute/unmute, camera mute/unmute, and end call functionality.
 
 The application aims to provide a seamless and intuitive user experience for web-based video calling, with added functionality for user management and call control. By leveraging the Agora RTC SDK, it ensures reliable and efficient real-time communication between participants.
 
+<div id="Technology"/>
 ### Technology:
 1. WebRTC (agora)
 2. Python (Django)
@@ -23,6 +26,7 @@ The application aims to provide a seamless and intuitive user experience for web
 4. HTML, JavaScript, CSS, Bootstrap 
 5. Host server on [railway](https://railway.app/)
 
+<div id="heading--1-1"/>
 ### Key Features:
 1. **Video Calling:** The application allows users to initiate video calls with other participants in real time. It leverages the Agora RTC SDK to establish reliable and high-quality video communication.
 
@@ -36,6 +40,8 @@ The application aims to provide a seamless and intuitive user experience for web
 
 6. **End Call Functionality:** Users have the ability to terminate ongoing video calls using the end call feature. This action disconnects the call and returns participants to the application's main interface.
 
+<div id="heading--1-1"/>
 ### How to run application ?
 
+<div id="heading--1-1"/>
 ### How webRTC (agora) works ?

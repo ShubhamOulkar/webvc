@@ -2,11 +2,12 @@
 
 ## Table of Contents
 
-- [LIVE DEMO](###Live Demo link)
-- [Project overview](###Project overview)
+- [LIVE DEMO](###Live-Demo-link)
+- [Project overview](###Project-overview)
 - [Technology](###Technology)
-- [Key Features](###Key Features)
-- [License](#license)
+- [Key Features](###Key-Features)
+- [How to run application ?](####How-to-run-application-?)
+- [How webRTC (agora) works ?](###How-webRTC-(agora)-works-?)
 
 ### [Live Demo link](https://webvc.up.railway.app)
 
@@ -23,15 +24,18 @@ The application aims to provide a seamless and intuitive user experience for web
 5. Host server on [railway](https://railway.app/)
 
 ### Key Features:
-1. Video Calling: The application allows users to initiate video calls with other participants in real time. It leverages the Agora RTC SDK to establish reliable and high-quality video communication.
+1. **Video Calling:** The application allows users to initiate video calls with other participants in real time. It leverages the Agora RTC SDK to establish reliable and high-quality video communication.
 
-2. User Signup: Users can create new accounts by registering their credentials, including username, email address, and password. The signup process ensures password matching functionality to validate accurate password input.
+2. **User Signup:** Users can create new accounts by registering their credentials, including username, email address, and password. The signup process ensures password matching functionality to validate accurate password input.
 
-3. Forget Password Capability: If users forget their passwords, they can utilize the "Forget Password" feature to initiate a password reset process. This typically involves sending a password reset link or verification code to the user's registered email address.
+3. **Forget Password Capability:** If users forget their passwords, they can utilize the "Forget Password" feature to initiate a password reset process. This typically involves sending a password reset link or verification code to the user's registered email address.
 
-4. Mic Mute/Unmute: During a video call, participants can easily control their microphone's audio input by toggling the mic mute/unmute functionality. This allows users to silence or enable their audio as desired.
+4. **Mic Mute/Unmute:** During a video call, participants can easily control their microphone's audio input by toggling the mic mute/unmute functionality. This allows users to silence or enable their audio as desired.
 
-5. Camera Mute/Unmute: Participants can control their camera's video feed during a video call. By using the camera mute/unmute functionality, users can turn off or resume their video streaming according to their preferences.
+5. **Camera Mute/Unmute:** Participants can control their camera's video feed during a video call. By using the camera mute/unmute functionality, users can turn off or resume their video streaming according to their preferences.
 
-6. End Call Functionality: Users have the ability to terminate ongoing video calls using the end call feature. This action disconnects the call and returns participants to the application's main interface.
+6. **End Call Functionality:** Users have the ability to terminate ongoing video calls using the end call feature. This action disconnects the call and returns participants to the application's main interface.
 
+### How to run application ?
+
+### How webRTC (agora) works ?

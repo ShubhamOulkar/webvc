@@ -67,12 +67,24 @@ cd mainfolders
 ![](mainfolders/webvc/static/webvc/images/appId.png)
 
 2. open **mainfolders/webvc/static/webvc/js/strems.js** add APP_ID here as well.
-
-3. open **mainfolders/mainfolder/settings.py** add EMAIL_HOST_USER and EMAIL_HOST_PASSWORD.
+```
+const APP_ID = '**************'
+const CHANNEL = sessionStorage.getItem('room')
+const TOKEN = sessionStorage.getItem('token')...
+```
+3. open **mainfolders/mainfolder/settings.py** add EMAIL_HOST_USER(add user gmail) and EMAIL_HOST_PASSWORD.
     if you are using gmail then see [how to get gmail app password.](https://www.getmailbird.com/gmail-app-password/)
 ![](mainfolders/webvc/static/webvc/images/email.png)
 
-### 8 - Start server
+#### 6 - run following commands in terminal
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
+
+#### 7 - Start server
 ```
 python manage.py runserver
 ```

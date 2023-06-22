@@ -21,7 +21,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
 }
 
@@ -263,6 +262,6 @@ body {
 @media only screen and (max-width: 900px){
     #password-container{
         width: 70%;
-        height: 60%;
+        height: 40%;
     }
 }     

@@ -2,8 +2,8 @@
 
 ## Table of Contents
 
-- [LIVE DEMO](#Live-Demo-link)
-- [YOUTUBE VIDEO](https://youtu.be/Xinb9Fql5qA)
+- [LIVE DEMO](#Live-Demo-link) (this demo link will stop after railways free usage exceed)
+- [webvc live](https://youtu.be/Xinb9Fql5qA) (watch demo video on the youtube)
 - [Project overview](#Project-overview)
 - [Technology](#Technology)
 - [Key Features](#Key-Features)
